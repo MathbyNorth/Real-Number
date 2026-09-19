@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Real Number Challenge</title>
+
+<style>
+
+body{
+    font-family:Arial;
+    text-align:center;
+    background:#eef6ff;
+    padding:30px;
+}
+
+h1{
+    color:navy;
+}
+
+#question{
+    font-size:40px;
+    margin:20px;
+}
+
+button{
+    font-size:18px;
+    padding:10px;
+    margin:5px;
+}
+
+#score{
+    font-size:24px;
+    color:green;
+    margin-top:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>🎯 Real Number Challenge</h1>
+
+<p>Choose the MOST SPECIFIC classification.</p>
+
+<div id="question"></div>
+
+<button onclick="check('Natural')">Natural</button>
+<button onclick="check('Whole')">Whole</button>
+<button onclick="check('Integer')">Integer</button>
+<button onclick="check('Rational')">Rational</button>
+<button onclick="check('Irrational')">Irrational</button>
+
+<h2 id="result"></h2>
+
+<div id="score">Score: 0</div>
+
+<script>
+
+const questions = [
+["8","Natural"],
+["0","Whole"],
+["-4","Integer"],
+["3/4","Rational"],
+["0.25","Rational"],
+["√2","Irrational"],
+["π","Irrational"],
+["15","Natural"],
+["-20","Integer"],
+["1.5","Rational"]
+];
+
+let current = 0;
+let score = 0;
+
+function loadQuestion(){
+
+    if(current>=questions.length){
+
+        document.getElementById("question").innerHTML =
+        "🏆 Game Over!";
+
+        document.getElementById("result").innerHTML =
+        "Final Score: " + score + " / " + questions.length;
+
+        return;
+    }
+
+    document.getElementById("question").innerHTML =
+    questions[current][0];
+}
+
+function check(answer){
+
+    if(answer===questions[current][1]){
+
+        score++;
+
+        document.getElementById("result").innerHTML =
+        "✅ Correct!";
+    }
+
+    else{
+
+        document.getElementById("result").innerHTML =
+        "❌ Answer: " + questions[current][1];
+    }
+
+    document.getElementById("score").innerHTML =
+    "Score: " + score;
+
+    current++;
+
+    setTimeout(loadQuestion,1000);
+}
+
+loadQuestion();
+
+</script>
+
+</body>
+</html>
